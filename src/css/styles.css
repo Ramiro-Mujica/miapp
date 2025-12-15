@@ -235,7 +235,7 @@ input[list]::-webkit-calendar-picker-indicator { display: none; }
 
 /* ========== Cart toggle & panel ========== */
 .cart-toggle-btn{
-  position:fixed; right:20px; top:128px; z-index:1600;
+  position:fixed; right:20px; top:104px; z-index:1600; /* aligned with nav link buttons */
   background: linear-gradient(90deg,var(--accent),#43a047);
   color:white; border:none; padding:12px 18px; border-radius:14px; display:flex; gap:10px; align-items:center;
   box-shadow: 0 14px 36px rgba(46,125,50,0.2); cursor:pointer; font-weight:800; font-size:0.95rem;
@@ -266,7 +266,7 @@ input[list]::-webkit-calendar-picker-indicator { display: none; }
 .cart-actions{ display:flex; gap:10px; margin-top:12px; justify-content:stretch; padding-top:8px; border-top:1px solid rgba(10,20,10,0.03); }
 .cart-actions .go-ticket{ flex:1; text-align:center; }
 
-@media (max-width:900px){ .cart-panel{ right:12px; left:12px; width:auto; max-height:62vh; } .cart-toggle-btn{ top:120px; } }
+@media (max-width:900px){ .cart-panel{ right:12px; left:12px; width:auto; max-height:62vh; } .cart-toggle-btn{ top:94px; right:12px; } }
 
 /* Compact product form layout on wider screens */
 @media (min-width:780px){
@@ -494,6 +494,9 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
 
 
 @media (max-width: 1200px){
+  .main-nav{
+    padding: 16px 0 10px 0; /* same as desktop */
+  }
   .main-nav-inner{
     max-width: 100%;
     gap: 18px;
@@ -503,6 +506,9 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
 }
 
 @media (max-width: 900px){
+  .main-nav{
+    padding: 16px 0 10px 0; /* same as desktop */
+  }
   .main-nav-inner{
     max-width: 100%;
     padding: 10px 16px 0 20px; /* left pad >=20px, aligns links to left */
