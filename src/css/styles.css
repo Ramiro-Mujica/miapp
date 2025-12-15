@@ -71,8 +71,8 @@ p{ margin:0 0 14px; color: #16361a; font-size:1rem; line-height:1.6; }
 .leaf-2{ left:42%; animation-delay:1s; }
 .leaf-3{ left:78%; animation-delay:2s; }
 
-/* Ocultar hojas decorativas en móviles */
-@media (max-width: 700px){
+/* Ocultar hojas decorativas en móviles y tablets */
+@media (max-width: 1200px){
   .hoja-cayendo{ display: none !important; }
 }
 
@@ -429,7 +429,7 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
 /* ========== Main Nav (new) ========== */
 .main-nav{
   position: sticky; /* stays visible at top while scrolling long lists */
-  top: 80px; /* just under fixed header */
+  top: 70px; /* just under fixed header, subido 10px */
   z-index: 1100;
   backdrop-filter: blur(6px);
   background: linear-gradient(90deg, #f5f5dc, #f5ead9); /* beige gradient - fully opaque */
@@ -437,7 +437,7 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
   width: 100%; /* ensure full width */
   left: 0;
   right: 0;
-  padding: 16px 0 26px 0; /* increased bottom padding significantly */
+  padding: 16px 0 16px 0; /* bottom reducido en 10px */
   margin: 0; /* remove any margins */
   box-sizing: border-box;
 }
@@ -492,16 +492,19 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
   box-shadow: 0 12px 30px rgba(46,125,50,0.22);
 }
 
+
 @media (max-width: 1200px){
   .main-nav-inner{
-    max-width: 85%;
+    max-width: 100%;
     gap: 18px;
+    padding: 10px 16px 0 20px;
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 900px){
   .main-nav-inner{
-    max-width: 90%;
+    max-width: 100%;
     padding: 10px 16px 0 20px; /* left pad >=20px, aligns links to left */
     gap: 16px;
     justify-content: flex-start; /* align nav items to the left */
