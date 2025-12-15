@@ -50,7 +50,7 @@ p{ margin:0 0 14px; color: #16361a; font-size:1rem; line-height:1.6; }
   height: 80px; /* reduced height */
   display: flex; align-items: center; justify-content: space-between;
   padding: 8px 20px;
-  background: linear-gradient(90deg, rgba(46,125,50,0.98), rgba(102,187,106,0.92)); /* green gradient */
+  background: linear-gradient(90deg, rgba(46,125,50,1), rgba(102,187,106,1)); /* green gradient - fully opaque */
   box-shadow: 0 8px 30px rgba(20,60,20,0.08);
   z-index: 1200;
 }
@@ -70,6 +70,11 @@ p{ margin:0 0 14px; color: #16361a; font-size:1rem; line-height:1.6; }
 .leaf-1{ left:6%; animation-delay:0s; }
 .leaf-2{ left:42%; animation-delay:1s; }
 .leaf-3{ left:78%; animation-delay:2s; }
+
+/* Ocultar hojas decorativas en móviles */
+@media (max-width: 700px){
+  .hoja-cayendo{ display: none !important; }
+}
 
 /* Footer internal layout */
 .footer-inner{ max-width:1100px; margin:0 auto; padding:0 20px; }
@@ -261,7 +266,7 @@ input[list]::-webkit-calendar-picker-indicator { display: none; }
 .cart-actions{ display:flex; gap:10px; margin-top:12px; justify-content:stretch; padding-top:8px; border-top:1px solid rgba(10,20,10,0.03); }
 .cart-actions .go-ticket{ flex:1; text-align:center; }
 
-@media (max-width:900px){ .cart-panel{ right:12px; left:12px; width:auto; max-height:62vh; } .cart-toggle-btn{ top:100px; } }
+@media (max-width:900px){ .cart-panel{ right:12px; left:12px; width:auto; max-height:62vh; } .cart-toggle-btn{ top:120px; } }
 
 /* Compact product form layout on wider screens */
 @media (min-width:780px){
@@ -427,7 +432,7 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
   top: 80px; /* just under fixed header */
   z-index: 1100;
   backdrop-filter: blur(6px);
-  background: linear-gradient(90deg, rgba(255,255,255,0.72), rgba(247,255,247,0.72));
+  background: linear-gradient(90deg, #f5f5dc, #f5ead9); /* beige gradient - fully opaque */
   border-bottom: 1px solid rgba(10,20,10,0.05);
   width: 100%; /* ensure full width */
   left: 0;
@@ -436,13 +441,24 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
   margin: 0; /* remove any margins */
   box-sizing: border-box;
 }
+/* Levanta visualmente el fondo beige unos píxeles sin mover los links */
+.main-nav::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px; /* sube el fondo 6px */
+  height: 6px;
+  background: linear-gradient(90deg, #f5f5dc, #f5ead9); /* beige gradient - fully opaque */
+  pointer-events: none;
+}
 .main-nav-inner{
-  max-width: 80%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 12px 20px 0; /* add top spacing from header, no extra bottom */
+  padding: 12px 20px 0 20px; /* 20px from left edge */
   display: flex;
   gap: 20px;
-  justify-content: center;
+  justify-content: flex-start; /* always align to left */
   align-items: center;
   flex-wrap: wrap;
 }
@@ -486,8 +502,9 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
 @media (max-width: 900px){
   .main-nav-inner{
     max-width: 90%;
-    padding: 10px 16px 0; /* keep top spacing under header */
+    padding: 10px 16px 0 20px; /* left pad >=20px, aligns links to left */
     gap: 16px;
+    justify-content: flex-start; /* align nav items to the left */
   }
   .nav-link{
     padding: 10px 18px;
@@ -501,8 +518,9 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
   }
   .main-nav-inner{
     max-width: 100%;
-    padding: 10px 12px 0;
+    padding: 10px 12px 0 20px; /* ensure 20px from left edge */
     gap: 12px;
+    justify-content: flex-start;
   }
   .nav-link{
     padding: 10px 16px;
@@ -516,7 +534,8 @@ input[type='text']:focus, input[type='number']:focus, .form-control:focus{ box-s
   }
   .main-nav-inner{
     gap: 8px;
-    padding: 8px 8px 0;
+    padding: 8px 12px 0 20px; /* keep left offset for very small screens */
+    justify-content: flex-start;
   }
   .nav-link{
     padding: 9px 14px;
